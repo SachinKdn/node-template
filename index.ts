@@ -9,6 +9,7 @@ import errorHandler from "./src/middlewares/errorHandler";
 import { IUser } from "./src/interfaces/user.interface";
 import { initPassport } from "./src/services/passport-jwt";
 import passport from "passport";
+import { createResponse } from "./src/helper/response";
 
 // Declare global types for Express
 declare global {
@@ -40,6 +41,12 @@ app.use(morgan("dev")); // Logging requests
 // Health Check Route (Should be before any complex routes)
 app.get("/", (req: Request, res: Response) => {
     res.send("Welcome Boss!!");
+});
+
+app.get("/api/server/test", (req: Request, res: Response) => {
+  res.send(
+    createResponse("Hello From Server Side API Call")
+    );
 });
 
 // API Routes (Handle actual API requests)
